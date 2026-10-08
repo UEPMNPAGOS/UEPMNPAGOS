@@ -6,7 +6,7 @@
     <title>Reporte de Pagos - U.E.P. María Natividad</title>
     <style>
         :root {
-            --primary-color: #1b4d3e; 
+            --primary-color: #1a44a5; 
             --accent-color: #d4af37;  
             --bg-color: #f4f7f6;
             --text-color: #333333;
@@ -44,16 +44,27 @@
             color: #ffffff;
             padding: 20px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
 
-        .app-header h1 {
+        .app-header img {
+            width: 60px;
+            height: auto;
+        }
+
+        .header-text h1 {
             font-size: 1.2rem;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
+            text-align: left;
         }
 
-        .app-header p {
+        .header-text p {
             font-size: 0.85rem;
             color: #e0e0e0;
+            text-align: left;
         }
 
         form {
@@ -121,7 +132,7 @@
             background-color: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
-            box-shadow: 0 2px 4px rgba(27, 77, 62, 0.3);
+            box-shadow: 0 2px 4px rgba(26, 68, 165, 0.3);
         }
 
         .months-container {
@@ -149,12 +160,12 @@
             background-color: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
-            box-shadow: 0 2px 4px rgba(27, 77, 62, 0.3);
+            box-shadow: 0 2px 4px rgba(26, 68, 165, 0.3);
         }
 
         .student-section {
-            background: #f9fbfb;
-            border: 1px solid #e0f2f1;
+            background: #f4f7fc;
+            border: 1px solid #d0e1fd;
             padding: 12px;
             border-radius: 8px;
             margin-bottom: 12px;
@@ -164,7 +175,7 @@
             font-size: 0.85rem;
             color: var(--primary-color);
             margin-bottom: 6px;
-            border-bottom: 1px dashed #b2dfdb;
+            border-bottom: 1px dashed #b1cffc;
             padding-bottom: 4px;
         }
 
@@ -194,10 +205,9 @@
         }
 
         button[type="button"]:hover {
-            background-color: #12352b;
+            background-color: #123380;
         }
 
-        /* Pantalla de éxito oculta por defecto */
         #successScreen {
             display: none;
             text-align: center;
@@ -229,11 +239,13 @@
 
     <div class="app-container">
         <div class="app-header">
-            <h1>U.E.P. "María Natividad"</h1>
-            <p>Reporte de Pagos</p>
+            <img src="logo.png" alt="Logo U.E.P. María Natividad">
+            <div class="header-text">
+                <h1>U.E.P. "María Natividad"</h1>
+                <p>Reporte de Pagos</p>
+            </div>
         </div>
 
-        <!-- FORMULARIO -->
         <form id="paymentForm">
             
             <div class="form-group">
@@ -331,7 +343,6 @@
             <button type="button" id="sendEmailBtn">Enviar Reporte desde mi Correo</button>
         </form>
 
-        <!-- PANTALLA DE ÉXITO (SE MUESTRA AL ENVIAR) -->
         <div id="successScreen">
             <h2>¡Correo Preparado Exitosamente!</h2>
             <p>Se ha abierto tu aplicación de correo con la información lista.<br><br><strong>Importante:</strong> Asegúrate de adjuntar la captura del comprobante y presionar <strong>Enviar</strong> en tu aplicación de correo para completar el reporte.</p>
@@ -388,7 +399,7 @@
                         <h4>Estudiante en ${grade}</h4>
                         <div class="form-group" style="margin-bottom: 0;">
                             <label style="font-size:0.75rem;">Nombre y Apellido del alumno:</label>
-                            <input type="text" class="student-name-input" data-grade="${grade}" required placeholder="Ej. José María">
+                            <input type="text" class="student-name-input" data-grade="${grade}" required placeholder="Ej. Héctor Padilla">
                         </div>
                     `;
                     studentContainer.appendChild(div);
@@ -446,10 +457,8 @@
             const body = encodeURIComponent(bodyText);
             const mailtoLink = `mailto:uepmnpagos@gmail.com?subject=${subject}&body=${body}`;
 
-            // Abrir el correo
             window.location.href = mailtoLink;
 
-            // Ocultar el formulario y mostrar la pantalla de éxito inmediatamente
             document.getElementById('paymentForm').style.display = 'none';
             document.getElementById('successScreen').style.display = 'block';
         });
